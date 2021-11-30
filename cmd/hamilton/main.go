@@ -24,6 +24,7 @@ func main() {
 	hamiltonCmd.AddCommand(balancesCmd())
 	hamiltonCmd.AddCommand(txCmd())
 	hamiltonCmd.AddCommand(runCmd())
+	hamiltonCmd.AddCommand(migrateCmd())
 
 	err := hamiltonCmd.Execute()
 	if err != nil {

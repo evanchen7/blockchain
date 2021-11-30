@@ -20,3 +20,6 @@ Content-Type: {{contentType}}
     "to": "babayaga",
     "value": 100
 }
+
+###
+GET http://{{host}}/node/status HTTP/1.1

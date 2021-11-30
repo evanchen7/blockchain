@@ -24,6 +24,7 @@ type Block struct {
 
 type BlockHeader struct {
 	Parent Hash   `json:"parent"`
+	Number uint64 `json:"number"`
 	Time   uint64 `json:"time"`
 }
 
@@ -32,9 +33,9 @@ type BlockFS struct {
 	Value Block `json:"block"`
 }
 
-func NewBlock(parent Hash, time uint64, txs []Tx) Block {
+func NewBlock(parent Hash, number uint64, time uint64, txs []Tx) Block {
 	return Block{
-		BlockHeader{parent, time}, txs,
+		BlockHeader{parent, number, time}, txs,
 	}
 }
 
