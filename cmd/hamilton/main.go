@@ -8,8 +8,10 @@ import (
 )
 
 func init() {
-	fmt.Println("Hamlton Blockchain initialized")
+	fmt.Println("Hamilton Blockchain initialized")
 }
+
+const flagDataDir = "datadir"
 
 func main() {
 	var hamiltonCmd = &cobra.Command{
@@ -18,11 +20,20 @@ func main() {
 		Run:   func(cmd *cobra.Command, args []string) {},
 	}
 
+	hamiltonCmd.AddCommand(versionCmd)
+	hamiltonCmd.AddCommand(balancesCmd())
+	hamiltonCmd.AddCommand(txCmd())
+
 	err := hamiltonCmd.Execute()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+}
+
+func addDefaultRequiredFlags(cmd *cobra.Command) {
+	cmd.Flags().String(flagDataDir, "", "Absolute path to the node data directory wher ethe DB will/is stored")
+	cmd.MarkFlagRequired(flagDataDir)
 }
 
 func incorrectUsageErr() error {

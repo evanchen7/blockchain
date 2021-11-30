@@ -2,6 +2,8 @@ module github.com/evanchen7/blockchain
 
 go 1.17
 
+replace github.com/evanchen7/blockchain => ./
+
 require github.com/spf13/cobra v1.2.1
 
 require (
