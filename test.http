@@ -1,0 +1,22 @@
+//GET http://localhost:8080/balances/list
+
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+ 
+GET http://{{host}}/hc HTTP/1.1
+
+###
+GET http://{{host}}/balances/list HTTP/1.1
+
+###
+POST http://{{host}}/tx/add HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "from": "andrej",
+    "to": "babayaga",
+    "value": 100
+}
