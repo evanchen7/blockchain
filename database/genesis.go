@@ -3,7 +3,6 @@ package database
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 )
 
 var genesisJson = `
@@ -21,19 +20,17 @@ type genesis struct {
 
 func loadGenesis(path string) (genesis, error) {
 	content, err := ioutil.ReadFile(path)
-	handleError(err)
+	if err != nil {
+		return genesis{}, err
+	}
 
 	var loadedGenesis genesis
 	err = json.Unmarshal(content, &loadedGenesis)
-	handleError(err)
+	if err != nil {
+		return genesis{}, err
+	}
 
 	return loadedGenesis, nil
-}
-
-func handleError(err error) {
-	if err != nil {
-		log.Panic(err)
-	}
 }
 
 func writeGenesisToDisk(path string) error {
